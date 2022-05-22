@@ -1,5 +1,11 @@
 package com.company;
 
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+
+
+
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -47,7 +53,28 @@ public class DataBase {
         return conesList;
     }
 
+    public static void JacksonSerializeCirclesList(CirclesList circlesList) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.writeValue(new File("./src/DataBaseJSON/" + LocalDate.now() + "-" + LocalDateTime.now().getHour() + "-" + LocalDateTime.now().getMinute() + "-" + LocalDateTime.now().getSecond() + "-ci.json"), circlesList);
+    }
+
+    public static void JacksonSerializeConesList(ConesList conesList) throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.writeValue(new File("./src/DataBaseJSON/" + LocalDate.now() + "-" + LocalDateTime.now().getHour() + "-" + LocalDateTime.now().getMinute() + "-" + LocalDateTime.now().getSecond() + "-co.json"), conesList);
+    }
+    public static CirclesList JacksonDeserializationCirclesList() throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readValue(Objects.requireNonNull(new File("./src/DataBaseJSON/").listFiles())[Objects.requireNonNull(new File("./src/DataBaseJSON").listFiles()).length - 2], CirclesList.class);
+    }
+
+    public static ConesList JacksonDeserializationConesList() throws IOException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readValue(Objects.requireNonNull(new File("./src/DataBaseJSON/").listFiles())[Objects.requireNonNull(new File("./src/DataBaseJSON").listFiles()).length - 1], ConesList.class);
+    }
+
 }
+
+
 
 
 

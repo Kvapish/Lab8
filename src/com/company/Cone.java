@@ -1,7 +1,11 @@
 package com.company;
 
-import java.io.Serializable;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import java.io.Serializable;
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Cone extends Circle implements Serializable {
     public double getHeight() {
         return height;
@@ -22,7 +26,9 @@ public class Cone extends Circle implements Serializable {
         super(radius);
         setHeight(height);
     }
+    public Cone(){
 
+    }
     public double getVolume() {
         return super.getSquare() * getHeight()  / 3;
     }

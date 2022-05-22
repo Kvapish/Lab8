@@ -1,13 +1,22 @@
 package com.company;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.io.Serializable;
 import java.util.ArrayList;
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ConesList implements Serializable {
     public ArrayList<Cone> cones;
 
     public ConesList() {
         this.cones = new ArrayList<>();
+    }
+    public ConesList(ArrayList <Cone> list){
+        this.cones = list;
+    }
+    public  ArrayList<Cone> getList() {
+        return cones;
     }
     public double getLargestVolume(){
         double  maximum = 0;
